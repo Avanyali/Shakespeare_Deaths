@@ -349,7 +349,7 @@ Put we our quarrel to the will of heaven,
 Who, when they see the hours ripe on Earth,
 Will rain hot vengeance on offenders' heads.
 
-DUCHESS
+GLOUCESTER
 Finds brotherhood in thee no sharper spur?
 Hath love in thy old blood no living fire?
 Edward's seven sons, whereof thyself art one,
@@ -388,13 +388,13 @@ Hath caused his death, the which if wrongfully
 Let heaven revenge, for I may never lift
 An angry arm against His minister.
 
-DUCHESS
+GLOUCESTER
 Where, then, alas, may I complain myself?
 
 GAUNT
 To God, the widow's champion and defense.
 
-DUCHESS
+GLOUCESTER
 Why then I will. Farewell, old Gaunt.
 Thou goest to Coventry, there to behold
 Our cousin Hereford and fell Mowbray fight.
@@ -412,7 +412,7 @@ GAUNT
 Sister, farewell. I must to Coventry.
 As much good stay with thee as go with me.
 
-DUCHESS
+GLOUCESTER
 Yet one word more. Grief boundeth where it falls,
 Not with the empty hollowness, but weight.
 I take my leave before I have begun,
