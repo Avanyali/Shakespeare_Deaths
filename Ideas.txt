@@ -1,3 +1,0 @@
-Take all lines said by shakespeare characters and see if character deaths can be predicted via language
-Use satellite data to try to predict algal blooms
-Use heat data to try to predict wildfires or other natural disasters
