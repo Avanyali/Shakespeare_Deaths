@@ -6,30 +6,13 @@ from nltk import RegexpTokenizer
 import shakespeare_dicts as sd
 
 def clean_anachronisms(sentence):
-    anachronisms = {'o': 'oh', 'hath': 'has', 'thou': 'you', 
-                    'thy': 'your', 'doth': 'does', 'tis': 'it is', 'ere': 'before', 'shalt': 'will',
-                    'thyself': 'yourself', 'ofer': 'over', 'twere': 'it were', 'hateth': 'hates',
-                    'handicraftman': 'craftsman', 'cavalery': 'cavalry',
-                    'alack': 'alas', 'eyne': 'eyes', 'wot': 'what',
-                    'persevere': 'persever',  'witnesseth': 'witness',
-                    'ofercharged': 'overcharged', 'momentany': 'momentary',
-                    'watory': 'watery', 'oferlook': 'overlook', 'nointed': 'anointed', 'oferrules': 'overrules',
-                    'flewed': 'flew', 'leathern': 'leathery',
-                    'yond': 'yonder', 'whatsomever': 'whatsoever', 'twas': 'it was',
-                    'twould': 'it would', 'threatoningly': 'threateningly', 
-                    'ofertaken': 'overtaken', 'ofercount': 'overcount', 
-                    'ofertake': 'overtake',  'tween': 'between', 
-                    'twixt': 'between', 'importeth': 'import',  'holp': 'hope', 'encountoring': 'encountering',
-                    'sdeath': 'god death', 'sblood': 'god blood', 'oferpeer': 'overlook',
-                    'unproperly': 'improperly', 
-                    'underpeep': 'underlook', 'oferlaboured': 'overworked',
-                    'madded': 'enraged', 
-                    'sufficeth': 'suffices',  'oferdoing': 'overdoing', 
-                    'oferdone': 'overdone', 'oferstep': 'overstep',
-                    'noyance': 'annoyance', 
-                    'wisheth': 'wishes', 'doteth': 'dotes',  'oferpaid': 'overpayed',
-                    'oferpeered': 'overlooked'
-                    }
+    anachronisms = sd.anachronisms_dict()
+    orings = sd.oring_dict()
+    ths = sd.th_dict()
+    sts = sd.st_dict()
+    
+    all_dicts = [anachronisms, orings, ths, sts]
+    
     tokenizer = RegexpTokenizer('\S+')
 
     sentence = clean_punctuation(sentence)
@@ -37,11 +20,14 @@ def clean_anachronisms(sentence):
 
     for word in tokenizer.tokenize(sentence):
         word = word.lower()
+        
+        word = re.sub(r'\Aofer', 'over', word)
 
-        if word in anachronisms:
-            word = anachronisms[word]
+        for dicto in all_dicts:
+            if word in dicto:
+                word = dicto[word]
 
-        new_sentence += word + ' '
+            new_sentence += word + ' '
 
     return new_sentence
 
