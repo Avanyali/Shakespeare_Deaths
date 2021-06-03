@@ -20,7 +20,6 @@ def clean_contractions(sentence):
     
     all_dicts = [contractions, shakespeare_contractions_dict]
     
-    sentence = clean_punctuation(sentence)
     new_sentence = ""
     
     tokenizer = RegexpTokenizer('\S+')
@@ -47,7 +46,6 @@ def clean_anachronisms(sentence):
     
     tokenizer = RegexpTokenizer('\S+')
 
-    sentence = clean_punctuation(sentence)
     new_sentence = ""
 
     for word in tokenizer.tokenize(sentence):
@@ -64,7 +62,8 @@ def clean_anachronisms(sentence):
 def clean_punctuation(sentence):
     sentence = re.sub(r"(?<=\A)([.?!-,:;\"\-])+|([.?!-,:;\"\-])+(?=\Z)", ' ', sentence)
     sentence = re.sub(r"(?<=\s)([.?!-,:;\"\-])+|([.?!-,:;\"\-])+(?=\s)", ' ', sentence)
-    return re.sub(r"([.?!-,:;\"\-]){2,}", ' ', sentence) 
+    sentence = re.sub(r"([.?!-,:;\"\-]){2,}", ' ', sentence) 
+    return re.sub(r"-", ' ', sentence) 
 
 def corpusize(df, column):
     tokenizer = RegexpTokenizer('\S+')
