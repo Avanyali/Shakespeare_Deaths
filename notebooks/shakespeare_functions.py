@@ -50,10 +50,13 @@ def clean_anachronisms(sentence):
 
     for word in tokenizer.tokenize(sentence):
         word = word.lower()
+        compound_word = re.sub(r'-', ' ', word)
 
         for dicto in all_dicts:
             if word in dicto:
                 word = dicto[word]
+            if compound_word in dicto:
+                word = dicto[compound_word]
  
         new_sentence += word + ' '
 
@@ -62,8 +65,7 @@ def clean_anachronisms(sentence):
 def clean_punctuation(sentence):
     sentence = re.sub(r"(?<=\A)([.?!-,:;\"\-])+|([.?!-,:;\"\-])+(?=\Z)", ' ', sentence)
     sentence = re.sub(r"(?<=\s)([.?!-,:;\"\-])+|([.?!-,:;\"\-])+(?=\s)", ' ', sentence)
-    sentence = re.sub(r"([.?!-,:;\"\-]){2,}", ' ', sentence) 
-    return re.sub(r"-", ' ', sentence) 
+    return re.sub(r"([.?!-,:;\"\-]){2,}", ' ', sentence) 
 
 def corpusize(df, column):
     tokenizer = RegexpTokenizer('\S+')
