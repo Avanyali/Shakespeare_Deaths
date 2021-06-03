@@ -3,6 +3,8 @@ import numpy as np
 import re
 
 from nltk import RegexpTokenizer
+from contractions import contractions_dict
+
 import shakespeare_dicts as sd
 
 def get_stopwords():
@@ -16,17 +18,19 @@ def clean_contractions(sentence):
     
     shakespeare_contractions_dict = sd.shakespeare_contractions_dict()
     
-    for key, value in shakespeare_contractions_dict.items():
-        contractions[key] = value
+    all_dicts = [contractions, shakespeare_contractions_dict]
     
     sentence = clean_punctuation(sentence)
     new_sentence = ""
+    
+    tokenizer = RegexpTokenizer('\S+')
 
     for word in tokenizer.tokenize(sentence):
         word = word.lower()
 
-        if word in contractions:
-            word = dicto[word]
+        for dicto in all_dicts:
+            if word in dicto:
+                word = dicto[word]
  
         new_sentence += word + ' '
 
@@ -35,10 +39,11 @@ def clean_contractions(sentence):
 def clean_anachronisms(sentence):
     anachronisms = sd.anachronisms_dict()
     orings = sd.oring_dict()
+    ofer = sd.ofer_dict()
     ths = sd.th_dict()
     sts = sd.st_dict()
     
-    all_dicts = [anachronisms, orings, ths, sts]
+    all_dicts = [anachronisms, orings, ths, sts, ofer]
     
     tokenizer = RegexpTokenizer('\S+')
 
@@ -47,8 +52,6 @@ def clean_anachronisms(sentence):
 
     for word in tokenizer.tokenize(sentence):
         word = word.lower()
-        
-        word = re.sub(r'\Aofer', 'over', word)
 
         for dicto in all_dicts:
             if word in dicto:
