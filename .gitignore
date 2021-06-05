@@ -1,2 +1,3 @@
 *.ipynb_checkpoints
 *.pyc
+data/csv/ShakespeareCharacterLines_engineered.csv
