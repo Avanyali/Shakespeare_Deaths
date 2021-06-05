@@ -1,3 +1,4 @@
 *.ipynb_checkpoints
 *.pyc
 data/csv/ShakespeareCharacterLines_engineered.csv
+data/csv/ShakespeareCharacterLines_character_corpus_avgs.csv
