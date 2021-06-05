@@ -8,7 +8,7 @@ from contractions import contractions_dict
 import shakespeare_dicts as sd
 
 def get_stopwords():
-    return ['ye', 'ay']
+    return ['ye', 'ay', 't', 'ah', 'oh']
 
 def clean_contractions(sentence):
     
@@ -25,11 +25,11 @@ def clean_contractions(sentence):
     tokenizer = RegexpTokenizer('\S+')
 
     for word in tokenizer.tokenize(sentence):
-        word = word.lower()
+        low = word.lower()
 
         for dicto in all_dicts:
-            if word in dicto:
-                word = dicto[word]
+            if low in dicto:
+                word = dicto[low]
  
         new_sentence += word + ' '
 
@@ -49,12 +49,12 @@ def clean_anachronisms(sentence):
     new_sentence = ""
 
     for word in tokenizer.tokenize(sentence):
-        word = word.lower()
-        compound_word = re.sub(r'-', ' ', word)
+        low = word.lower()
+        compound_word = re.sub(r'-', ' ', low)
 
         for dicto in all_dicts:
-            if word in dicto:
-                word = dicto[word]
+            if low in dicto:
+                word = dicto[low]
             if compound_word in dicto:
                 word = dicto[compound_word]
  
